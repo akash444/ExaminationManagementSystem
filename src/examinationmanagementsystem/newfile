@@ -1,0 +1,20 @@
+    ResultSet rs=stmt.executeQuery("select * from quiz");     
+    rs.next();
+        ques=rs.getString(1);
+        op1=rs.getString(2);
+        op2=rs.getString(3);
+        op3=rs.getString(4);
+        op4=rs.getString(5);
+        //System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4)+"  "+rs.getString(5));  
+        System.out.println(ques+" "+op1+" "+op2+" "+op3+" "+op4+" ok bro");
+
+
+
+
+
+//
+        public String ques(){return ques;}
+        public String op1(){return op1;}
+        public String op2(){return op2;}
+        public String op3(){return op3;}
+        public String op4(){return op4;}

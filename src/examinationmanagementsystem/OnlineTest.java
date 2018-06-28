@@ -2,12 +2,44 @@ package examinationmanagementsystem;
 
 /*Online Java Paper Test*/
 
-import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
 
-class OnlineTest extends JFrame implements ActionListener
+class OnlineTest extends JFrame implements ActionListener        
 {
+    String ques,op1,op2,op3,op4;
+    public void admin() throws SQLException{
+        Connection con;
+        try{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","Akash","priya");
+        System.out.println("connected with AKASH");
+        Statement stmt=con.createStatement();
+        ResultSet rs=stmt.executeQuery("select * from quiz");     
+        rs.next();
+        ques=rs.getString(1);
+        op1=rs.getString(2);
+        op2=rs.getString(3);
+        op3=rs.getString(4);
+        op4=rs.getString(5);
+        //System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4)+"  "+rs.getString(5));  
+        System.out.println(ques+" "+op1+" "+op2+" "+op3+" "+op4+" ok bro");
+        }
+        
+        catch(ClassNotFoundException e){
+            System.out.println("Cant able to load the driver");
+        }
+        catch(SQLException e){
+            System.out.println("cant able to connect with system");                     
+        }
+       
+    }
+    
 	JLabel l;
 	JRadioButton jb[]=new JRadioButton[5];
 	JButton b1,b2;
@@ -100,56 +132,94 @@ class OnlineTest extends JFrame implements ActionListener
 	}
 	void set()
 	{
+          //startin to connect with oracle 11g xe eddtion
+        Connection con;
+        
+        try{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","Akash","priya");
+        System.out.println("connected with AKASH");
+        //if the user name and passwork ok then you are connected to oracle
+        Statement stmt=con.createStatement();//by createing stmt object you can run or execute sql query 
+        ResultSet rs=stmt.executeQuery("select * from quiz");   //by using executeQuery method you can run sql query  
+         rs.next();        
+        ques=rs.getString(1);
+        op1=rs.getString(2);
+        op2=rs.getString(3);
+        op3=rs.getString(4);
+        op4=rs.getString(5);
+       
+        
+        //System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4)+"  "+rs.getString(5));  
+        System.out.println(ques+" "+op1+" "+op2+" "+op3+" "+op4+" ok bro");
+        }
+        
+        catch(ClassNotFoundException e){
+            System.out.println("Cant able to load the driver");
+        }
+        catch(SQLException e){
+            System.out.println("cant able to connect with system");                     
+        }
+      
+            
+            
+            
+            
+            
+            
 		jb[4].setSelected(true);
+                System.out.println("kuch nahi "+ques);
+                
 		if(current==0)
 		{
-			l.setText("Que1: Which one among these is not a datatype");
-			jb[0].setText("int");jb[1].setText("Float");jb[2].setText("boolean");jb[3].setText("char");	
+			l.setText("Ques1 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);	
 		}
+                
 		if(current==1)
 		{
-			l.setText("Que2: Which class is available to all the class automatically");
-			jb[0].setText("Swing");jb[1].setText("Applet");jb[2].setText("Object");jb[3].setText("ActionEvent");
+			l.setText("Ques2 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==2)
 		{
-			l.setText("Que3: Which package is directly available to our class without importing it");
-			jb[0].setText("swing");jb[1].setText("applet");jb[2].setText("net");jb[3].setText("lang");
+			l.setText("Ques3 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==3)
 		{
-			l.setText("Que4: String class is defined in which package");
-			jb[0].setText("lang");jb[1].setText("Swing");jb[2].setText("Applet");jb[3].setText("awt");
+			l.setText("Ques4 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==4)
 		{
-			l.setText("Que5: Which institute is best for java coaching");
-			jb[0].setText("Utek");jb[1].setText("Aptech");jb[2].setText("SSS IT");jb[3].setText("jtek");
+			l.setText("Ques5 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==5)
 		{
-			l.setText("Que6: Which one among these is not a keyword");
-			jb[0].setText("class");jb[1].setText("int");jb[2].setText("get");jb[3].setText("if");
+			l.setText("Ques6 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==6)
 		{
-			l.setText("Que7: Which one among these is not a class ");
-			jb[0].setText("Swing");jb[1].setText("Actionperformed");jb[2].setText("ActionEvent");jb[3].setText("Button");
+			l.setText("Ques7 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==7)
 		{
-			l.setText("Que8: which one among these is not a function of Object class");
-			jb[0].setText("toString");jb[1].setText("finalize");jb[2].setText("equals");jb[3].setText("getDocumentBase");		
+			l.setText("Ques8 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);		
 		}
 		if(current==8)
 		{
-			l.setText("Que9: which function is not present in Applet class");
-			jb[0].setText("init");jb[1].setText("main");jb[2].setText("start");jb[3].setText("destroy");
+			l.setText("Ques9 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		if(current==9)
 		{
-			l.setText("Que10: Which one among these is not a valid component");
-			jb[0].setText("JButton");jb[1].setText("JList");jb[2].setText("JButtonGroup");jb[3].setText("JTextArea");
+			l.setText("Ques10 - "+ques);
+			jb[0].setText(op1);jb[1].setText(op2);jb[2].setText(op3);jb[3].setText(op4);
 		}
 		l.setBounds(30,40,450,20);
 		for(int i=0,j=0;i<=90;i+=30,j++)
@@ -158,7 +228,7 @@ class OnlineTest extends JFrame implements ActionListener
 	boolean check()
 	{
 		if(current==0)
-			return(jb[1].isSelected());
+			return(jb[0].isSelected());
 		if(current==1)
 			return(jb[2].isSelected());
 		if(current==2)
@@ -179,9 +249,12 @@ class OnlineTest extends JFrame implements ActionListener
 			return(jb[2].isSelected());
 		return false;
 	}
-	public static void main(String s[])
+	public static void main(String s[]) throws SQLException
 	{
+               // ExaminationManagementSystem ems = new ExaminationManagementSystem();
+                //ems.admin();
 		new OnlineTest("Online Test Of Java");
+               //  System.out.println(ques);
 	}
 
 
